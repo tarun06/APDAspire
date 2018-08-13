@@ -8,7 +8,7 @@ namespace APDAspire.Model
 
     [DisplayName("Contact")]
     [BsonIgnoreExtraElements]
-    public class ContactModel
+    public class ContactDto
     {
         [BsonId]
         public Guid Contact_Id { get; set; }

@@ -20,7 +20,7 @@ namespace APDAspire.ContactServer.Controllers
 
         [HttpPut]
         [Route("add")]
-        public async Task<IActionResult> Add([FromBody] ContactModel contactModel)
+        public async Task<IActionResult> Add([FromBody] ContactDto contactModel)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace APDAspire.ContactServer.Controllers
 
         [HttpPost]
         [Route("update")]
-        public async Task<IActionResult> Update([FromBody] ContactModel contactModel)
+        public async Task<IActionResult> Update([FromBody] ContactDto contactModel)
         {
             try
             {

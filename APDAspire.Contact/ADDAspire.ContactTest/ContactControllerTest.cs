@@ -13,17 +13,17 @@ namespace APDAspire.ContactTest
 {
     public static class ConfigGenerator
     {
-        public static List<ContactModel> GetAllContact()
+        public static List<ContactDto> GetAllContact()
         {
-            return new List<ContactModel>()
+            return new List<ContactDto>()
             {
-                new ContactModel(){FirstName="Tarun", LastName="kalal",
+                new ContactDto(){FirstName="Tarun", LastName="kalal",
                     DOB = new DateTime(1995,3,6),
                     Contact_Id =Guid.NewGuid(),
                     EmailId = new List<string>(){"tarun.mewara06@gmail.com"}
                 , PhoneNumber = new List<string>(){"+919738114549"}},
 
-                new ContactModel(){FirstName="Mark", LastName="Smith",
+                new ContactDto(){FirstName="Mark", LastName="Smith",
                     DOB = new DateTime(2003,3,6),
                     Contact_Id =Guid.NewGuid(),
                     EmailId = new List<string>(){ "Mark.Smith@gmail.com" }
@@ -32,7 +32,7 @@ namespace APDAspire.ContactTest
                };
         }
 
-        public static List<ContactModel> GetContactByName(string firstName)
+        public static List<ContactDto> GetContactByName(string firstName)
         {
            return GetAllContact().Where(x => x.FirstName.Contains(firstName)).ToList();
         }
@@ -68,7 +68,7 @@ namespace APDAspire.ContactTest
             this.mockContactStore.Setup(x => x.GetAll()).ReturnsAsync(contacts);
             var result = await contactController.GetAll() as OkObjectResult;
 
-            var outputCollection = result.Value as List<ContactModel>;
+            var outputCollection = result.Value as List<ContactDto>;
 
             CollectionAssert.AreEqual(contacts, outputCollection);
         }
@@ -104,7 +104,7 @@ namespace APDAspire.ContactTest
         public async Task ContactControllerTest_Update_NullId_Failed_Test()
         {
             string exceptionMessage = "Contact error!";
-            var contactModel = new ContactModel()
+            var contactModel = new ContactDto()
             {
                 FirstName = "Mark",
                 LastName = "Smith",
@@ -125,7 +125,7 @@ namespace APDAspire.ContactTest
         public async Task ContactControllerTest_Update_Succeed_Test()
         {
             Guid temp = Guid.NewGuid();
-            var contactModel = new ContactModel()
+            var contactModel = new ContactDto()
             {
                 FirstName = "Mark",
                 LastName = "Smith",
@@ -145,7 +145,7 @@ namespace APDAspire.ContactTest
         [TestMethod]
         public async Task ContactControllerTest_Create_Succeed_Test()
         {
-            var contactModel = new ContactModel()
+            var contactModel = new ContactDto()
             {
                 Contact_Id = Guid.NewGuid(),
                 FirstName = "Mark",
@@ -184,7 +184,7 @@ namespace APDAspire.ContactTest
         {
             string exceptionMessage = "First Name Not found error!";
 
-            var contactModel = new ContactModel()
+            var contactModel = new ContactDto()
             {
                 Contact_Id = Guid.NewGuid(),
                 LastName = "Smith",
@@ -228,7 +228,7 @@ namespace APDAspire.ContactTest
             var contacts = ConfigGenerator.GetContactByName(firstName);
             this.mockContactStore.Setup(x => x.GetByName(firstName)).ReturnsAsync(contacts);
             var result = await contactController.GetByName(firstName) as OkObjectResult;
-            var outputCollection = result.Value as List<ContactModel>;
+            var outputCollection = result.Value as List<ContactDto>;
             CollectionAssert.AreEqual(contacts, outputCollection);
         }
 

@@ -17,7 +17,7 @@ namespace APDAspire.ContactStore
             context = new ContactContext(settings);
         }
 
-        public async  Task<Guid> Create(ContactModel contactModel)
+        public async  Task<Guid> Create(ContactDto contactModel)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace APDAspire.ContactStore
             }
         }
 
-        public async Task<ContactModel> GetById(Guid contact_Id)
+        public async Task<ContactDto> GetById(Guid contact_Id)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace APDAspire.ContactStore
             }
         }
 
-        public async Task<IEnumerable<ContactModel>> GetByName(string firstName)
+        public async Task<IEnumerable<ContactDto>> GetByName(string firstName)
         {
             try
             {
@@ -86,11 +86,11 @@ namespace APDAspire.ContactStore
             }
         }
 
-        public async Task<IEnumerable<ContactModel>> GetAll()
+        public async Task<IEnumerable<ContactDto>> GetAll()
         {
             try
             {
-                return await context.ContactData.Find(Builders<ContactModel>.Filter.Empty).ToListAsync();
+                return await context.ContactData.Find(Builders<ContactDto>.Filter.Empty).ToListAsync();
             }
             catch (Exception)
             {
@@ -99,7 +99,7 @@ namespace APDAspire.ContactStore
         }
 
 
-        public async Task<bool> Update(ContactModel contactModel)
+        public async Task<bool> Update(ContactDto contactModel)
         {
             try
             {

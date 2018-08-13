@@ -23,11 +23,11 @@ namespace APDAspire.ContactStore
 
         }
 
-        public IMongoCollection<ContactModel> ContactData
+        public IMongoCollection<ContactDto> ContactData
         {
             get
             {
-                return database.GetCollection<ContactModel>(this.collectionName);
+                return database.GetCollection<ContactDto>(this.collectionName);
             }
         }
     }

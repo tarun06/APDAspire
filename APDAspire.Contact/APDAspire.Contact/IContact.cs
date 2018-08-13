@@ -7,16 +7,16 @@ namespace APDAspire.Contact
 {
     public interface IContact
     {
-        Task<Guid> Create(ContactModel contactModel);
+        Task<Guid> Create(ContactDto contactModel);
 
-        Task<bool> Update(ContactModel contactModel);
+        Task<bool> Update(ContactDto contactModel);
 
         Task<bool> Delete(Guid id);
 
-        Task<IEnumerable<ContactModel>> GetAll();
+        Task<IEnumerable<ContactDto>> GetAll();
 
-        Task<ContactModel> GetById(Guid id);
+        Task<ContactDto> GetById(Guid id);
 
-        Task<IEnumerable<ContactModel>> GetByName(string  firstName);
+        Task<IEnumerable<ContactDto>> GetByName(string  firstName);
     }
 }
